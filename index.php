@@ -3,7 +3,7 @@ if(!$r=@str_replace('>','',$_GET['r'])) $r='http://dbpedia.org/resource/Berlin';
 echo "<!DOCTYPE html><title>Browsing $e</title><meta charset=utf8>
 <style>td,th{border-top:1px solid #aaa}a{text-decoration:none}</style>
 <form>Entity URI: <input name=r value='$r' size=80><input type=submit></form>";
-$q=urlencode("SELECT*{{<$r> ?po ?x}UNION{?x ?pi <$r>}}ORDER BY ?pi ?po ?x");
+$q=urlencode("SELECT * {{<$r> ?po ?x}UNION{?x ?pi <$r>}}ORDER BY ?pi ?po ?x");
 if(!$rsp=@file_get_contents("$e?query=$q")) die('<strong>Server error');
 try{$x=@new SimpleXMLElement($rsp);}
 catch(Exception $e){die('<strong>Client error: '.$e->getMessage());}
